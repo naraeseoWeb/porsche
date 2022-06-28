@@ -29,12 +29,25 @@ $(document).ready(function(){
     이벤트: 마우스 호버
     이벤트 핸들러: find .submenu
   */
+  // 과거 버전 
+  $("#gnb .menu").mouseover(function(){
+    $(".submenu").hide();
+    $(this).find(".submenu").show();
+  }).mouseout(function(){
+    $(".submenu").hide();
+  });
+  
+  /* 추후 수정
   $("#gnb .menu a").bind("mouseover focus",function(){
     $(".submenu").hide();
     $(this).next().show();
-  }).bind("mouseout blur",function(){
+  });
+  $("#gnb .menu").bind("mouseout blur",function(){
     $(".submenu").hide();
   });
+  */
+  // !문제점 발생: tab 기능 추가 시 a를 선택해야 하는데 a 태그 에서 벗어나면 메뉴가 닫힘
+  // 일단은 과거 버전으로 reset 함
 
 
   /*스크롤 시 사라지게 하는 기능 만들기
@@ -56,9 +69,7 @@ $(document).ready(function(){
       return false;
     }
   });*/
-
-
-
+  
 
   /*############# [visual 부분 이미지 sliding] #############*/
     /*
