@@ -1,0 +1,164 @@
+/*############### global ###############*/
+  a:link, a:visited{text-decoration:none; color:#000;}
+  a:hover, a:focus{color:#000;}
+
+/*########################## wrap ##########################*/	
+  #wrap{min-width:1025px; margin:0 auto;}
+
+/*############################ headerWrap ############################*/
+  #headerWrap{width:100%; border-bottom:3px solid #ccc;}
+
+  /*############################ header ############################*/
+  #header{width:100%; padding-top:20px;} 
+
+  /*로고 사이즈 120*72*/
+  h1{width:120px; margin:0 auto;}
+
+  #header:after{content:""; display:block; clear:both;}
+  #headerWrap:after{content:""; display:block; clear:both;}
+
+/*####################### container #######################*/
+  #container{width:100%;}
+
+/*####################### configNav #######################*/
+  #configNav{width:100%; background-color:rgba(0,0,0,0.1)}
+  #configNav ul{width:90%; line-height:40px; margin:0 5%;}
+  #configNav li{display:inline-block; letter-spacing:2px; padding:0 10px;}
+  #configNav li a{color:#333; margin-right:10px; text-transform:uppercase; text-align:center; font-size:20px;}	
+  /*선택 시 밑줄*/
+  .sel{border-bottom:2px solid #C5051F; font-weight:700;}
+
+  #configNav li span{color:#ccc;}
+  
+  #configNav li:hover a{color:#D5001C;}
+
+  #configNav ul:after{content:""; display:block; clear:both;}
+
+  /*####################### configArea #######################*/
+  #configArea{width:100%; padding-bottom:60px;}
+  #configArea h3{width:94%; height: 90px; line-height:80px; font-size:30px; margin-left:6%;}
+
+  /*####################### config_main #######################*/
+  /* left side total width:65%*/
+  #config_main{width:60%; margin-left:5%; float:left;}
+  /*메인사진*/
+  #main{width:95%; margin-right:5%; position:relative;}
+  #main img{width:100%; box-shadow:5px 5px 5px rgba(0,0,0,0.2);}
+  /*layer*/
+  #main .layer1{display:block; width:100%; position:absolute; left:0; top:0;}
+  #main .layer2{display:block; position:absolute; left:0; top:0; width:100%;}
+
+
+  /*###### modal ######*/
+  #view{width:80%;
+    position:absolute; left:50%; top:50%;
+    transform:translate(-50%, -50%); border:2px solid #fafafa;
+    box-shadow:10px 10px 10px rgba(0,0,0,0.5);}
+
+  #view img{width:100%; z-index:1;}
+
+  #full{position:fixed; left:0; top:0; width:100%; height:100%; 
+    backdrop-filter: blur(5px); background-color:rgba(0,0,0,0.4);}
+
+
+/*####################### config #######################*/
+  #config{width:34%; margin-left:1%; height:620px;  overflow:auto; float:left; }
+  #config dl{width:80%; margin-right:20%; }
+  #config dt{width:100%; height:60px; line-height:60px; border-bottom:1px solid #ccc; font-size:24px; font-weight:700; text-indent:4px; /* background-color:#eee;  */cursor:pointer; position:relative;}
+
+  /*위아래로 접히는 모션*/
+  #config dt span{position:absolute; right:10px; top:0; font-weight:500; font-size:22px;  transition:all 0.3s linear;}
+
+  .hide{transform:rotate(-180deg);}
+
+  #config dd{padding-top:10px;}
+  #config dd h4{height:40px; line-height:40px; font-size:14px; font-weight:500;}
+  
+  #config ul{width:100%;}
+  #config li{float:left; width:60px; height:60px; margin-left:4px; margin-top:4px; }
+
+  #config li span{text-indent:-9999px;}
+  #config li a{display:block; width:100%; height:100%; text-indent:-9999px; overflow:hidden;}
+
+
+  
+  /*########## config / model ##########*/
+  #config .model li{width:100%; height:30px;}
+
+
+
+  /*########## config / ext. (외장 컬러) ##########*/
+  #config .ext .white a{background-color:rgb(239,239,239);}
+  #config .ext .black a{background-color:rgb(0,0,0);}
+  #config .ext .red a{background-color:rgb(204,0,51);}
+  #config .ext .yellow a{background-color:rgb(255,204,0);}
+  #config .ext .me_wh a{background-color:rgb(239,245,249);}
+  #config .ext .me_bl a{background-color:rgb(0,0,0);}
+  #config .ext .me_grey a{background-color:rgb(51,51,51);}
+  #config .ext .me_sil a{background-color:rgb(195,205,211);}
+  #config .ext .me_gt a{background-color:rgb(204,204,204);}
+  #config .ext .me_blue a{background-color:rgb(0,25,75);}
+  #config .ext .me_gr a{background-color:rgb(60,60,50);}
+  #config .ext .sp_ch a{background-color:rgb(199,199,191);}
+  #config .ext .sp_red a{background-color:rgb(153,0,51);}
+  #config .ext .sp_or a{background-color:rgb(251,54,28);}
+  #config .ext .sp_blue a{background-color:rgb(0,109,209);}
+  #config .ext .sp_gr a{background-color:rgb(60,147,67);}
+
+  /*########## config / ext. (휠) ##########*/
+  #config .wheel{width:100%;}
+  #config .wheel ul{padding:10px 0;}
+  #config .wheel li{margin-left:10px;}
+  #config .wheel li a{text-indent:0;}
+  #config .wheel li img{width:100%;}
+
+  #config:after{content:""; display:block; clear:both;}
+  #config ul:after{content:""; display:block; clear:both;}
+  #configArea:after{content:""; display:block; clear:both;}
+
+  /*########## config / int. (내부인테리어) ##########*/
+
+  #config .int{width:100%; height:560px}
+
+  
+  #config .int .st_bl a{background-color:rgb(0,0,0);}
+  #config .int .st_biege a{background-color:rgb(195,168,143);}
+
+  #config .int .lt_blue a{background-color:rgb(58,64,71);}
+  #config .int .lt_gray a{background-color:rgb(51,51,51);}
+  #config .int .lt_gr a{background-color:rgb(160,155,130);}
+  #config .int .lt_red a{background-color:rgb(120,47,47);}
+
+  #config .int .cl_br a{background-color:rgb(56,38,30);}
+  #config .int .cl_gr a{background-color:rgb(57,57,42);}
+
+
+/*############################ footerWrap ############################*/
+  #footerWrap{width:100%; border-top:2px solid #888; background-color:#151515; position:fixed; left:0; bottom:0;}
+
+  /*############################ footer ############################*/
+    #footer{width:100%; font-size:14px; color:#C7C7C7;} 
+    #footer hr{width:98%; margin-left:1%; border:1px solid #444;}
+
+  /*########## footer / legalArea ##########*/	
+    #legalArea{width:1006px; height:40px; line-height:30px; margin:0 auto;}
+
+  /*########## legalArea / copy ##########*/	
+    #copy{width:30%; float:left;}
+    #copy a{color:#999;}
+
+  /*########## legalArea / policy ##########*/	
+    #policy{width:70%; float:left;}
+
+    #policy ul{width:100%;}
+    #policy li{display:inline;}
+    #policy li a{padding:0 20px; color:#777; transition:color 0.3s linear;}
+
+    #footer a:hover, #footer a:focus{color:#C5051F;}
+
+    #footerWrap:after{content:""; display:block; clear:both;}
+
+
+/*############################# 임시보관공간 #############################*/
+  h2{position:absolute; left:-9999px; width:1px; height:1px; line-height:0; font-size:1px; overflow:hidden;}
+
