@@ -1,0 +1,10 @@
+/*reset*/
+*{margin:0; padding:0;}
+body{margin:0; padding:0; background-color:#fff;}
+header, nav, section, footer, p, div, form, a, span, strong, em, i{margin:0; padding:0;}			
+header, nav, section, footer{display:block;}
+
+li{list-style-type:none;}
+img{border:none;}
+
+input[type="button"], input[type="submit"], input[type="reset"], button{cursor:pointer;}
