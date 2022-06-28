@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+	<title>Porsche Exclusive Manufaktur</title>
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<style>
+		/*############### reset ###############*/
+			*{margin:0; padding:0;}
+			li{list-style-type:none;}
+			body{margin:0; padding:0; background-color:#fff;}
+			img{border:none;}
+		
+			header, nav, section, footer{display:block;}
+
+			a:link, a:visited{text-decoration:none; color:#000;}
+			a:hover, a:focus{color:#f00;}
+			li{list-style-type:none;}
+
+			input[type="button"], input[type="submit"], input[type="reset"], button{cursor:pointer;}
+			
+		/*########################## wrap ##########################*/	
+			#wrap{min-width:1025px; margin:0 auto;}
+
+			/*############################ headerWrap ############################*/
+			#headerWrap{width:100%; height:90px;}
+
+		/*############################ header ############################*/
+			#header{width:1006px; height:90px; margin:0 auto;} 
+
+			/*로고 사이즈 120*72*/
+			h1{width:120px; float:left; padding-top:10px;}
+
+			/*########## header / infoMenu ##########*/	
+			#infoMenu{width:886px; height:32px; line-height:32px; text-align:right; float:left;}
+			#infoMenu ul{width:100%;}
+			#infoMenu li{display:inline; text-transform:uppercase; font-size:13px;}
+			#infoMenu li a{color:#555; padding:0 10px;}	
+			#infoMenu li span{color:#ccc;}
+			
+			#infoMenu li:hover a{text-decoration:underline;}
+
+			/*########## header / navArea ##########*/
+			/*
+				총 영역 너비 905px
+				gnb 600 + search 305px
+			*/
+			#navArea{width:886px; height:50px; float:left;}
+
+			/*########## gnb ##########*/
+			#gnb{width:710px; line-height:50px; text-align:center; float:left;}
+			#gnb li{display:inline;}
+			#gnb li a{padding:0 20px 0 40px; font-size:18px; font-weight:700;}
+
+			#gnb li:hover a{color:#f00;}
+
+			/*########## schArea ##########*/
+			/*검색 이미지 25*25 */
+			#schArea{width:176px; float:left;}
+
+			#schArea form{width:100%; height:24px; padding:13px 0;}
+			#schArea fieldset{border:none;}
+			#schArea legend{display:none;}
+
+			#schArea .input{width:99%; float:left;}
+			#schArea input{width:100%; height:26px; line-height:26px;  text-indent:10px; border:1px solid #777;}
+
+			/*################## 모바일용 내비게이션 ##################*/
+			#mobHeader{display:none;}
+
+			#header:after{content:""; display:block; clear:both;}
+			#headerWrap:after{content:""; display:block; clear:both;}
+
+
+		/*####################### container #######################*/
+			#container{width:100%;}
+			#container section{width:100%; height:800px;}
+
+		/*#################### visualArea ####################*/
+			#visualArea{width:100%; background-color:#555;}
+			#visual{width:100%; overflow:hidden; position:relative;}
+			/*이미지 크기 1920px*738px*/
+			#visual ul{width:200%;cursor:pointer;}
+			#visual li{width:50%; position:relative; float:left;}
+			#visual li .img{width:100%;}
+			#visual li img{width:100%;}
+
+			#visual ul:after{content:""; display:block; clear:both;}
+			#visual:after{content:""; display:block; clear:both;}
+
+			/*####### visual / .textArea #######*/
+			#visual .textArea{width:500px; font-size:30px; position:absolute; left:4%; bottom:60px;}
+			
+			#visual .textArea strong{display:block; font-size:36px; color:#eee; line-height:50px; transition:color 0.4s linear;}
+			#visual .textArea span{display:block; width:100%; color:#eee;}
+		
+
+		/*#################### contNavArea ####################*/
+			#contNavArea{width:100%; height:50px; border-top:2px solid #ccc; border-bottom:2px solid #ccc;}
+			#contNav{width:1300px; margin:0 auto;}
+			#contNav ul{width:100%;}
+			#contNav li{display:inline;}
+				
+			#contNav li a{line-height:50px; padding:0 20px; font-size:18px; font-weight:700;}
+			#contNav li i{font-style:normal; color:#ccc;}
+
+			#contNav a:hover, #contNav a:focus{color:#c00; text-decoration:underline;}
+
+
+		/*#################### craftArea (craftmanship) ####################*/
+			#craftArea{width:100%;}
+
+			/*#################### craft ####################*/
+			#craft{width:100%;}
+
+			/*####### craft / .textArea #######*/	
+			#craft .textArea{text-align:center; font-weight:700; font-size:16px;}
+			#craft h3{width:100%; height:80px; line-height:100px; font-size:26px;}
+			#craft .textArea .desc{font-weight:600;}
+			#craft .textArea .title{line-height:50px; color:#D5001C;}
+
+			/*####### craft / .imgArea #######*/	
+			#craft .imgArea{width:1265px; padding-top:20px; margin:0 auto;}
+			#craft .img_small{float:left;}
+			#craft .img_small .img{width:400px; margin-top:10px; margin-left:10px; overflow:hidden;}
+			#craft .img_small .img img{width:100%; transform:scale(1); transition:transform 2s linear;}
+
+			#craftArea .img_small:hover .img:first-child img{transform:scale(1.1);}
+			#craftArea .img_small:hover .img:last-child img{transform:scale(1.2);}
+
+			#craft .img_wide{width:825px; margin-top:10px; margin-left:10px; float:left; overflow:hidden;}
+			#craft .img_wide img{width:100%; transform:scale(1); transition:transform 50s linear;}
+
+			#craftArea .img_wide:hover img{width:100%; transform:scale(2);}
+
+			#craft .imgArea:after{content:""; display:block; clear:both;}
+
+
+		/*#################### hightechArea ####################*/
+			#hightechArea{width:100%; padding-top:80px;}
+
+			/*#################### hightech ####################*/
+			/*이미지: 900*450*/
+			#hightech{width:900px; margin:0 auto; position:relative;}
+			#hightech .imgArea{width:900px; position:relative;}
+			#hightech .img{width:100%;}
+			#hightech img{width:100%;}
+			
+			#hightech .textArea{width:700px; color:#fff; position:absolute; left:50px; bottom:50px;}
+			#hightech .textArea h3{font-size:36px; line-height:50px;}
+			#hightech .textArea i{font-size:30px; color:#fff; font-style:normal;}
+			#hightech .textArea p{font-size:24px; text-indent:26px;}
+			
+			/*####### hightech / .textBox #######*/	
+			#hightech .textBox{width:880px; height:430px; margin:10px;	
+				background-color:rgba(255,255,255,0.8); position:absolute; left:0; top:0;
+				opacity:0; transition:opacity 0.5s linear;
+			}
+			#hightech .textBox p{padding:0 40px;}
+			#hightech .textBox .title{padding-top:120px; font-size:40px; line-height:40px;}
+			#hightech .textBox .title_sub{font-size:24px; font-weight:600; padding-top:10px;}
+			#hightech .textBox .desc{font-size:14px; padding-top:20px; line-height:22px;}
+			
+			#hightech:hover .textBox{opacity:1;}
+			#hightech:hover .textArea{display:none;}
+
+			/*####### hightech / .desc_bottom #######*/	
+			#hightechArea .desc_bottom{width:900px; margin:0 auto;}
+			#hightechArea .desc_bottom .title{line-height:50px; padding-top:30px;}
+			#hightechArea .desc_bottom p:last-child{font-size:14px;}
+
+
+			#hightech:after{content:""; display:block; clear:both;}
+
+
+		/*#################### detailArea (craftmanship) ####################*/
+			#detailArea{width:100%;}
+
+			/*#################### detail ####################*/
+			#detail{width:100%; overflow:hidden;}
+
+			/*####### detail / .textArea #######*/	
+			#detail .textArea{text-align:center; font-weight:700; font-size:16px;}
+			#detail h3{width:100%; height:80px; line-height:100px; font-size:26px;}
+			#detail .textArea .desc{font-weight:600;}
+			#detail .textArea .title{line-height:50px; color:#f00;}
+
+			/*####### detail / .imgArea #######*/	
+			#detail .imgArea{width:1265px; padding-top:20px; margin:0 auto; overflow:hidden;}
+			#detail .img_small{float:left;}
+			#detail .img_small .img{width:400px; margin-top:10px; margin-left:10px;}
+			#detail .img_small .img img{width:100%; transform:translatex(-3000px); 
+			transition:transform 0.5s linear;}
+
+			#detailArea:hover #detail .img_small .img img{transform:translatex(0px)}
+
+			#detail .img_wide{width:825px; margin-top:10px; margin-left:10px; float:left;}
+			#detail .img_wide img{width:100%; transform:translatey(-1000px); transition:transform 1s linear 0.5s;}
+			#detailArea:hover #detail .img_wide img{transform:translatey(0px)}
+
+			#detail .imgArea:after{content:""; display:block; clear:both;}
+
+			/*####### detail / .desc_bottom #######*/	
+			#detail .desc_bottom{width:1025px; margin:0 auto;}
+			#detail .desc_bottom .title{line-height:50px; padding-top:30px;}
+
+
+		/*#################### FreedomArea ####################*/
+			#FreedomArea{width:100%; padding-top:50px;}
+
+			/*#################### Freedom ####################*/
+			/*이미지: 900*450*/
+			#Freedom{width:900px; margin:0 auto; position:relative;}
+			#Freedom .imgArea{width:900px; position:relative;}
+			#Freedom .img{width:100%;}
+			#Freedom img{width:100%;}
+			
+			#Freedom .textArea{width:800px; text-align:right; color:#fff; position:absolute; left:50px; bottom:50px;}
+			#Freedom .textArea h3{font-size:36px;  line-height:50px;}
+			#Freedom .textArea i{font-size:30px; color:#fff; font-style:normal;}
+			#Freedom .textArea p{font-size:24px; text-indent:26px;}
+			
+			/*####### Freedom / .textBox #######*/	
+			#Freedom .textBox{width:880px; height:430px; margin:10px;	
+				background-color:rgba(255,255,255,0.8); position:absolute; left:0; top:0;
+				opacity:0; transition:opacity 0.5s linear;
+			}
+			#Freedom .textBox p{padding:0 40px;}
+			#Freedom .textBox .title{padding-top:120px; font-size:40px; line-height:40px;}
+			#Freedom .textBox .title_sub{font-size:24px; font-weight:600; padding-top:10px;}
+			#Freedom .textBox .desc{font-size:14px; padding-top:20px; line-height:22px;}
+			
+			#Freedom:hover .textBox{opacity:1;}
+			#Freedom:hover .textArea{display:none;}
+
+			#Freedom:after{content:""; display:block; clear:both;}
+
+
+		/*#################### TranArea (Trandition and new paths) ####################*/
+			#TranArea{width:100%;}
+
+			/*#################### tran ####################*/
+			#tran{width:100%;}
+
+			/*####### tran / .textArea #######*/	
+			#tran .textArea{text-align:center; font-weight:700; font-size:16px;}
+			#tran h3{width:100%; height:80px; line-height:100px; font-size:26px;}
+			#tran .textArea .desc{font-weight:600;}
+			#tran .textArea .title{line-height:50px; color:#f00;}
+
+			/*####### tran / .imgArea #######*/	
+			#tran .imgArea{width:1265px; padding-top:20px; margin:0 auto;}
+			#tran .img_small{float:left;}
+			#tran .img_small .img{width:400px; margin-top:10px; margin-left:10px;}
+			#tran .img_small .img img{width:100%;}
+
+			#tran .img_wide{width:825px; margin-top:10px; margin-left:10px; float:left;}
+			#tran .img_wide img{width:100%;}
+
+			#tran .imgArea:after{content:""; display:block; clear:both;}
+
+			/*####### tran / .desc_bottom #######*/	
+			#tran .desc_bottom{width:1025px; margin:0 auto;}
+			#tran .desc_bottom .title{line-height:50px; padding-top:30px;}
+
+		/*#################### oblgArea (obligation) ####################*/
+			#oblgArea{width:100%;}
+
+			#oblg_corp{width:1025px; margin:0 auto;}
+
+			/*#################### oblgArea / corp ####################*/
+			/*이미지: 900*450*/
+			#corp{width:900px; margin:30px auto 0; position:relative; cursor:pointer;}
+			#corp .imgArea{width:100%; position:relative;}
+			#corp .img{width:100%;}
+			#corp img{width:100%;}
+			
+			#corp .textArea{width:560px; color:#fff; position:absolute; left:20px; bottom:20px;}
+			#corp .textArea h3{font-size:36px; line-height:50px;}
+			#corp .textArea i{font-size:30px; color:#fff; font-style:normal;}
+			#corp .textArea p{font-size:24px;}
+			
+			/*####### corp / .desc #######*/	
+			#corp .desc{width:880px; height:430px; margin:10px;	
+				background-color:rgba(255,255,255,0.8); position:absolute; left:0; top:0;
+				opacity:0; transition:opacity 0.4s ease-in;
+			}
+			#corp .desc p{padding:0 40px;}
+			#corp .desc .title{padding-top:40px; font-size:40px; line-height:40px;}
+			#corp .desc .title_sub{font-size:24px; font-weight:600; padding-top:20px;}
+			#corp .desc .text{font-size:14px; padding-top:20px; line-height:22px;}
+			
+			#corp:hover .desc{opacity:1;}
+			#corp:hover .textArea{display:none;}
+
+			#corp:after{content:""; display:block; clear:both;}
+
+			/*####### oblg / .textArea #######*/	
+			#oblg {width:700px; margin:0 auto; padding-top:50px;}
+			#oblg h3{width:100%; font-size:28px;}
+			#oblg p{width:100%; padding-top:20px;}
+			#oblg strong{font-size:22px;}
+
+			#oblg:after{content:""; display:block; clear:both;}
+		
+
+		/*#################### discArea ####################*/
+			#discArea{width:100%;}
+
+			/*#################### disc (discover) ####################*/
+			#disc{width:100%; padding-top:80px;}
+			#disc h3{line-height:100px; text-align:center; font-size:30px; cursor:pointer;}
+			
+			#disc ul{width:1280px; margin:0 auto; padding-bottom:100px;}
+			#disc	li{width:308px; margin-right:10px; margin-top:10px; float:left;}
+
+			#disc li .img{width:100%; height:228px; overflow:hidden;}
+			#disc li img{width:100%;}
+
+			#disc li .desc{line-height:40px; text-indent:10px;}
+			#disc li .desc a{display:block; width:100%; font-size:14px; color:#000; transition:color 0.5s linear;}
+			#disc li .desc a i{font-style:normal; font-weight:700; color:#D5001C;}
+			#disc li .desc .underline{display:block; text-indent:-9999px; width:0; height:1px; background-color:#D5001C; transition:all 0.4s ease-in;}
+
+			#disc li:hover a{color:#D5001C;}
+
+			#disc ul:after{content:""; display:block; clear:both;}
+
+
+		/*############################ footerWrap ############################*/
+			#footerWrap{width:100%; border-top:2px solid #888; background-color:#151515;}
+
+			/*############################ footer ############################*/
+			#footer{width:100%; font-size:14px; color:#C7C7C7;} 
+			#footer hr{width:98%; margin-left:1%; border:1px solid #444;}
+
+			/*########## footer / legalArea ##########*/	
+			#legalArea{width:1200px; height:60px; line-height:50px; margin:0 auto;}
+
+			/*########## legalArea / copy ##########*/	
+			#copy{width:30%; float:left;}
+			#copy a{color:#999;}
+
+			/*########## legalArea / policy ##########*/	
+			#policy{width:70%; float:left;}
+
+			#policy ul{width:100%;}
+			#policy li{display:inline;}
+			#policy li a{padding:0 20px; color:#777; transition:color 0.3s linear;}
+
+			#footer a:hover, #footer a:focus{color:#C5051F;}
+
+			#footerWrap:after{content:""; display:block; clear:both;}
+
+
+		/*############################# 임시보관공간 #############################*/
+			h2{position:absolute; left:-9999px; width:1px; height:1px; line-height:0; font-size:1px; overflow:hidden;}
+
+	</style>
+	<script>
+		$(document).ready(function(){
+
+			
+			/*########## [visual sliding] ##########*/
+				/*
+					처음 사진 클릭하면 오른쪽으로 이동
+					마지막 사진 클릭하면 왼쪽으로 이동
+				*/
+				$("#visual li:first").click(function(){
+					$("#visual ul").animate({"marginLeft":"-100%"},500,"swing");
+				});				
+				$("#visual li:last").click(function(){
+					$("#visual ul").animate({"marginLeft":"0"},500,"swing");
+				});
+
+			/*########## [container 보이기] ##########*/
+				$("#container section:not(:first)").hide();
+
+				$("#contNav li a").click(function(){
+					$("#container section").slideUp(600);
+					$($(this).attr("href")).slideDown(500);
+					return false;
+				});
+
+			/*########## [discover 숨겼다가 보이게 만들기] ##########
+				$("#disc ul").hide();
+				$("#disc h3").click(function(){
+					$(this).next().stop().slideDown(500,"linear");				
+				}).dblclick(function(){
+					$(this).next().stop().slideUp(500,"linear");				
+				});*/
+		
+
+			/*########## [discover 선택된 곳 밑줄긋기] ##########*/
+				$("#disc li").bind("mouseover focus",function(){
+					$(this).find(".underline").css({"width":"100%"});				
+				}).bind("mouseout blur",function(){
+					$(this).find(".underline").css({"width":"0"});				
+				});
+				
+
+		});
+
+		
+
+
+
+	</script>
+ </head>
+ <body>
+	<div id="wrap">
+		<header id="headerWrap">
+			<div id="header">
+				<h1>
+					<a href="../index.html" title="Porsche">
+						<img src="../img/header/logo.jpg" alt="Porsche"/>
+					</a>
+				</h1>
+				<div id="infoMenu">
+					<h2>Info Menu</h2>
+					<ul>
+						<li><a href="#" title="Shopping">Shopping</a><span>|</span></li>
+						<li><a href="#" title="Dealers">Dealers</a><span>|</span></li>
+						<li><a href="#" title="My Porsche">My Porsche</a><span>|</span></li>
+						<li><a href="#" title="Join">Join</a></li>
+					</ul>
+				</div>
+				<nav id="navArea">
+					<h2>Navigation Menu</h2>
+					<ul id="gnb">
+						<li><a href="#" title="Models">Models</a></li>
+						<li><a href="#" title="Service">Service</a></li>
+						<li><a href="#" title="Experience">Experience</a></li>
+						<li><a href="#" title="Company">Company</a></li>	
+					</ul>
+					<div id="schArea">
+						<h2>Model Search</h2>
+						<form action="#" method="get">
+							<fieldset>
+								<legend>search</legend>
+								<p class="input">
+									<input id="search" type="text" name="search" title="Model Search" placeholder="search"/>
+								</p>
+							</fieldset>
+						</form>
+					</div>
+				</nav>
+				<div id="mobHeader">
+					<p>
+						<span>─</span>
+						<span>─</span>
+						<span>─</span>
+					</p>
+				</div>
+			</div>
+		</header>
+
+		<div id="container">
+			<!--visual-->
+			<div id="visualArea">
+				<h2>Porsche Exclusive Manufaktur</h2>
+				<div id="visual">
+					<ul>
+						<li>
+							<div class="img">
+								<img src="../img/manufaktur/visual0.jpg" alt="porsche_exclusive-manufaktur"/>
+							</div>		
+							<div class="textArea">
+								<a href="#none" title="Porsche Heritage Design">
+								<strong>Porsche Heritage Design</strong>
+								<span>
+										Fashion fades, but style never does.
+								</span>
+								</a>
+							</div>								
+						</li>
+						<li>
+							<div class="img">
+								<img src="../img/manufaktur/visual1.jpg" alt="exclusive_manufaktur_image1"/>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!--contentNav-->
+			<div id="contNavArea">
+				<h2>Content Navigation</h2>
+				<div id="contNav">
+					<ul>						
+						<li><a href="#craftArea" title="Craftmanship">Craftmanship</a><i>|</i></li>
+						<li><a href="#hightechArea" title="Hightech">High-tech and Craftmanship</a><i>|</i></li>
+						<li><a href="#detailArea" title="Attend to detail">Attend to detail</a><i>|</i></li>
+						<li><a href="#TranArea" title="Old and New">Trandition and new paths</a><i>|</i></li>
+						<li><a href="#oblgArea" title="Obligation">Obligation</a><i>|</i></li>
+						<li><a href="#discArea" title="Discover More">Discover More</a></li>
+					</ul>
+				</div>
+			</div>
+
+
+
+			<!--craftmanship-->
+			<section id="craftArea">
+				<h2>Porsche Exclusive Manufaktur - Craftmanship</h2>
+				<div id="craft">
+					<div class="textArea">
+						<h3>Craftmanship</h3>
+						<p class="desc">
+							Just as impressive as the artwork? The creative process.						
+						</p>
+						<p class="title">
+							<strong>
+								Porsche Exclusive Manufaktur
+							</strong>
+						</p>
+					</div>
+					<div class="imgArea">
+						<div class="img_small">
+							<p class="img">
+								<img src="../img/manufaktur/craft0.jpg" alt="craft 이미지0"/>
+							</p>
+							<p class="img">
+								<img src="../img/manufaktur/craft1.jpg" alt="craft 이미지1"/>
+							</p>
+						</div>
+						<p class="img_wide">
+							<img src="../img/manufaktur/craft2.jpg" alt="craft 이미지2"/>
+						</p>
+					</div>
+
+				</div>
+			</section>
+
+			<!--hightech-->
+			<section id="hightechArea">
+				<h2>High-tech and craftsmanship</h2>
+				<div id="hightech">
+					<div class="imgArea">
+						<p class="img">
+							<img src="../img/manufaktur/hightech.jpg" alt="hightech_image"/>
+						</p>
+						<div class="textArea">
+							<h3>
+								<i>+</i> High-tech and craftsmanship –
+							</h3>
+							<p>do they go together?</p>
+						</div>
+					</div>
+					<div class="textBox">
+						<p class="title"><strong>High-tech and craftsmanship –</strong></p>
+						<p class="title_sub">do they go together?</p>
+						<p class="desc">
+							Absolutely. When customizing our sports cars, it is hard to beat wood. The grain of this natural material is like a genetic fingerprint. Unmistakable – and it tells a story all its own. Could there be anything better to make a vehicle unique? We use the finest timbers from around the world. With an inimitable and yet perfect structure. Elaborately refined in perfected, hand-crafted processes. Whether grinding, cutting, painting or polishing: the utmost precision is always demanded. So that everything about your one-of-a-kind piece meets your expectations 100%.
+						</p>
+					</div>
+				</div>
+				<div class="desc_bottom">
+					<p class="title">
+						<strong>Our most important tools from day one? Our hands.</strong>
+					</p>
+					<p>
+						The manufacturing process is a sophisticated task. Besides the use of valuable materials such as leather, Alcantara®, carbon, wood or aluminum, our most important asset is human hands. They are often the only tools that meet our high demands. When applying leather, paint and polish. When cutting and sewing, as well as when assembling in the Porsche Exclusive Manufaktur. Always in due time. Or put another way: with great care, calm, concentration, passion and dedication. That is how our art of craftsmanship always creates a coherent whole in the end.
+					</p>
+				</div>
+			</section>
+
+			<!--detail-->
+			<section id="detailArea">
+				<h2>Porsche Exclusive Manufaktur - Attention to detail</h2>
+				<div id="detail">
+					<div class="textArea">
+						<h3>Attention to detail</h3>
+						<p class="desc">
+							How to achieve the big picture:	with attention to detail.					
+						</p>
+						<p class="title">
+							<strong>
+								Porsche Exclusive Manufaktur
+							</strong>
+						</p>
+					</div>
+					<div class="imgArea">
+						<div class="img_small">
+							<p class="img">
+								<img src="../img/manufaktur/detail0.jpg" alt="detail_image0"/>
+							</p>
+							<p class="img">
+								<img src="../img/manufaktur/detail1.jpg" alt="detail_image1"/>
+							</p>
+						</div>
+						<p class="img_wide">
+							<img src="../img/manufaktur/detail2.jpg" alt="detail_image2"/>
+						</p>
+					</div>
+					<div class="desc_bottom">
+						<p class="title">
+							<strong>Our most important tools from day one? Our hands.</strong>
+						</p>
+						<p>
+							The manufacturing process is a sophisticated task. Besides the use of valuable materials such as leather, Alcantara®, carbon, wood or aluminum, our most important asset is human hands. They are often the only tools that meet our high demands. When applying leather, paint and polish. When cutting and sewing, as well as when assembling in the Porsche Exclusive Manufaktur. Always in due time. Or put another way: with great care, calm, concentration, passion and dedication. That is how our art of craftsmanship always creates a coherent whole in the end.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!--Freedom-->
+			<section id="FreedomArea">
+				<h2>Freedom to design</h2>
+				<div id="Freedom">
+					<div class="imgArea">
+						<p class="img">
+							<img src="../img/manufaktur/freedom.jpg" alt="freedom_to_design"/>
+						</p>
+						<div class="textArea">
+							<h3>
+								<i>+</i> Freedom to design –
+							</h3>
+							<p>you do not have to reinvent the wheel to customize it.</p>
+						</div>
+					</div>
+					<div class="textBox">
+						<p class="title"><strong>Freedom to design –</strong></p>
+						<p class="title_sub">you do not have to reinvent the wheel to customize it.</p>
+						<p class="desc">
+							You do not have to reinvent the wheel to customize it. But it takes a high degree of craftsmanship to give wheels something that makes them special: character. Which you determine. For example, designing the wheel finishing – even beyond the official range of offerings. We disassemble the wheels in the Porsche Exclusive Manufaktur. The tires are then peeled off in our own tire center. Only then does the wheel get its color - naturally also by hand. Because individual taste also deserves individual implementation.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!--Trandition and new paths-->
+			<section id="TranArea">
+				<h2>Porsche Exclusive Manufaktur - Trandition and new paths</h2>
+				<div id="tran">
+					<div class="textArea">
+						<h3>Trandition and new paths</h3>
+						<p class="desc">
+							Beauty becomes even more beautiful when it follows an idea.						
+						</p>
+						<p class="title">
+							<strong>
+								Porsche Exclusive Manufaktur
+							</strong>
+						</p>
+					</div>
+					<div class="imgArea">
+						<div class="img_small">
+							<p class="img">
+								<img src="../img/manufaktur/tran0.jpg" alt="tran_image0"/>
+							</p>
+							<p class="img">
+								<img src="../img/manufaktur/tran1.jpg" alt="tran_image1"/>
+							</p>
+						</div>
+						<p class="img_wide">
+							<img src="../img/manufaktur/tran2.jpg" alt="tran_image2"/>
+						</p>
+					</div>
+					<div class="desc_bottom">
+						<p class="title">
+							<strong>We always stick to this tradition: permanent development.</strong>
+						</p>
+						<p>
+							Our customers are inspired by a variety of different things. And always develop new ideas. We also stand for constant progress. That is why we are working closely with the Porsche Design Studio. But also with the Porsche engineers in Weissach.
+						</p>
+						<p>
+							We always strive for perfection – as part of our tradition. For this reason, we are developing products that are meant to serve an overall concept: your personal sports car. Looking good is not everything in life, after all. Bright ideas and the demand for the highest quality are just as important to us. Yesterday as well as tomorrow.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!--obligation-->
+			<section id="oblgArea">
+				<h2>What is our obligation?</h2>
+				<div id="oblg_corp">
+					<div id="corp">
+						<div class="imgArea">
+							<p class="img">
+								<img src="../img/manufaktur/corp.jpg" alt="Corporate philosophy image"/>
+							</p>
+							<div class="textArea">
+								<h3>
+									<i>+</i> Corporate philosophy –
+								</h3>
+								<p>Exclusive quality accompanies us throughout the entire development process.</p>
+							</div>
+						</div>
+						<div class="desc">
+							<p class="title"><strong>Corporate philosophy –</strong></p>
+							<p class="title_sub">Exclusive quality accompanies us throughout the entire development process.</p>
+							<p class="text">
+								From the first sketch to the final test – the claim to exclusive quality accompanies us throughout the entire development process. For us, the focus is not only on design and aesthetics. But also our engineering skills. For example, the Aerokit 911 Turbo. It was subjected to extensive tests in Weissach, both in the Porsche Development Centre and on the circuit. Important test bench: the high-tech wind tunnel, which with its eight-meter diameter can produce wind speeds of up to 186 mph. Therefore, the best prerequisites for creating realistic test conditions for a sports car. The Aerokit 911 Turbo is a true novelty in every respect. In addition to a front spoiler with lateral fins, a completely new rear lid construction with a fixed tailbuckle with side winglets is part and parcel. The Aerokit 911 Turbo rounds off the extendable rear wing that can be adjusted in the angle of attack. The art of Porsche engineering in every part. And in the same mold.
+							</p>
+						</div>
+					</div>			
+					<div id="oblg">
+						<h3>We feel obligated to uphold a tradition of creating unique sports cars.</h3>
+						<p class="bold">
+							<strong>Why should you not make the special even more special?</strong>
+						</p>
+						<p>
+							Ferry Porsche once said, "We place more value on building cars of quality than on building cars for quantity." A way of thinking that has a long history at Porsche. And one that to this very day describes our daily work.In the Porsche Exclusive Manufaktur, we raise this maxim to the highest principle. With the goal of realizing personal customer requests and thereby creating special vehicles. For every type and every model. To turn something special into something extraordinary.					
+						</p>
+					</div>
+				</div>
+			</section>
+
+
+			<!--dicover-->
+			<section id="discArea">
+				<h2>Discover</h2>
+				<div id="disc">
+					<h3>Discover more</h3>
+					<ul>
+						<li>
+							<p class="img">
+								<img src="../img/manufaktur/disc0.jpg" alt="discover_image_0"/>
+							</p>
+							<p class="desc">
+								<a href="#">
+									<i>&gt;</i>&nbsp;Personality
+								</a>
+								<span class="underline">.</span>
+							</p>			
+						</li>
+						<li>
+							<p class="img">
+								<img src="../img/manufaktur/disc1.jpg" alt="discover_image_1"/>
+							</p>
+							<p class="desc">
+								<a href="https://www.porsche.com/usa/accessoriesandservices/classic/" title="Porsche Classic">
+									<i>&gt;</i>&nbsp;Porsche Classic
+								</a>
+								<span class="underline">.</span>
+							</p>			
+						</li>
+						<li>
+							<p class="img">
+								<img src="../img/manufaktur/disc2.jpg" alt="discover_image_2"/>
+							</p>
+							<p class="desc">
+								<a href="#">
+									<i>&gt;</i>&nbsp;911 model
+								</a>
+								<span class="underline">.</span>
+							</p>			
+						</li>
+						<li>
+							<p class="img">
+								<img src="../img/manufaktur/disc3.jpg" alt="discover_image_3"/>
+							</p>
+							<p class="desc">
+								<a href="#">
+									<i>&gt;</i>&nbsp;Uniqueness
+								</a>
+								<span class="underline">.</span>
+							</p>			
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+			<!--footer-->
+		<footer id="footerWrap">
+			<div id="footer">
+				<hr class="hide"/>
+
+				<div id="legalArea">
+					<h2>copyright and policy</h2>
+					<p id="copy">
+						© 2022 <a href="../index.html" title="Porsche HOME">Porsche Cars.</a> All rights reserved
+					</p>
+					<div id="policy">
+						<ul>
+							<li><a href="#none" title="Legal notice">Legal notice</a></li>
+							<li><a href="#none" title="Legal">Legal</a></li>
+							<li><a href="#none" title="Cookie Policy">Cookie Policy</a></li>
+							<li><a href="#none" title="Cookie Consent Options">Cookie Consent Options</a></li>	
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+ </body> 
+</html>

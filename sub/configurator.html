@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+	<title>Porche Car Configurator</title>
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<style>
+		/*############### reset ###############*/
+			*{margin:0; padding:0;}
+			body{margin:0; padding:0; background-color:#fff;}
+			li{list-style-type:none;}
+				
+			header, nav, section, footer{display:block;}
+
+			a:link, a:visited{text-decoration:none; color:#000;}
+			a:hover, a:focus{color:#000;}
+			li{list-style-type:none;}
+			img{border:none;}
+
+			input[type="button"], input[type="submit"], input[type="reset"], button{cursor:pointer;}
+
+		/*########################## wrap ##########################*/	
+			#wrap{min-width:1025px; margin:0 auto;}
+
+		/*############################ headerWrap ############################*/
+			#headerWrap{width:100%; border-bottom:3px solid #ccc;}
+
+			/*############################ header ############################*/
+			#header{width:100%; padding-top:20px;} 
+
+			/*로고 사이즈 120*72*/
+			h1{width:120px; margin:0 auto;}
+
+			#header:after{content:""; display:block; clear:both;}
+			#headerWrap:after{content:""; display:block; clear:both;}
+
+		/*####################### container #######################*/
+			#container{width:100%;}
+
+		/*####################### configNav #######################*/
+			#configNav{width:100%; background-color:rgba(0,0,0,0.1)}
+			#configNav ul{width:90%; line-height:40px; margin:0 5%;}
+			#configNav li{display:inline-block; letter-spacing:2px; padding:0 10px;}
+			#configNav li a{color:#333; margin-right:10px; text-transform:uppercase; text-align:center; font-size:20px;}	
+			/*선택 시 밑줄*/
+			.sel{border-bottom:2px solid #C5051F; font-weight:700;}
+
+			#configNav li span{color:#ccc;}
+			
+			#configNav li:hover a{color:#D5001C;}
+
+			#configNav ul:after{content:""; display:block; clear:both;}
+
+			/*####################### configArea #######################*/
+			#configArea{width:100%; padding-bottom:60px;}
+			#configArea h3{width:94%; height: 90px; line-height:80px; font-size:30px; margin-left:6%;}
+
+			/*####################### config_main #######################*/
+			/* left side total width:65%*/
+			#config_main{width:60%; margin-left:5%; float:left;}
+			/*메인사진*/
+			#main{width:95%; margin-right:5%; position:relative;}
+			#main img{width:100%; box-shadow:5px 5px 5px rgba(0,0,0,0.2);}
+			/*layer*/
+			#main .layer1{display:block; width:100%; position:absolute; left:0; top:0;}
+			#main .layer2{display:block; position:absolute; left:0; top:0; width:100%;}
+
+
+			/*###### modal ######*/
+			#view{width:80%;
+				position:absolute; left:50%; top:50%;
+    		transform:translate(-50%, -50%); border:2px solid #fafafa;
+				box-shadow:10px 10px 10px rgba(0,0,0,0.5);}
+
+			#view img{width:100%; z-index:1;}
+
+    	#full{position:fixed; left:0; top:0; width:100%; height:100%; 
+				backdrop-filter: blur(5px); background-color:rgba(0,0,0,0.4);}
+
+	
+		/*####################### config #######################*/
+			#config{width:34%; margin-left:1%; height:620px;  overflow:auto; float:left; }
+			#config dl{width:80%; margin-right:20%; }
+			#config dt{width:100%; height:60px; line-height:60px; border-bottom:1px solid #ccc; font-size:24px; font-weight:700; text-indent:4px; /* background-color:#eee;  */cursor:pointer; position:relative;}
+
+			/*위아래로 접히는 모션*/
+			#config dt span{position:absolute; right:10px; top:0; font-weight:500; font-size:22px;  transition:all 0.3s linear;}
+
+			.hide{transform:rotate(-180deg);}
+
+			#config dd{padding-top:10px;}
+			#config dd h4{height:40px; line-height:40px; font-size:14px; font-weight:500;}
+			
+			#config ul{width:100%;}
+			#config li{float:left; width:60px; height:60px; margin-left:4px; margin-top:4px; }
+
+			#config li span{text-indent:-9999px;}
+			#config li a{display:block; width:100%; height:100%; text-indent:-9999px; overflow:hidden;}
+
+
+			
+			/*########## config / model ##########*/
+			#config .model li{width:100%; height:30px;}
+
+
+
+			/*########## config / ext. (외장 컬러) ##########*/
+			#config .ext .white a{background-color:rgb(239,239,239);}
+			#config .ext .black a{background-color:rgb(0,0,0);}
+			#config .ext .red a{background-color:rgb(204,0,51);}
+			#config .ext .yellow a{background-color:rgb(255,204,0);}
+			#config .ext .me_wh a{background-color:rgb(239,245,249);}
+			#config .ext .me_bl a{background-color:rgb(0,0,0);}
+			#config .ext .me_grey a{background-color:rgb(51,51,51);}
+			#config .ext .me_sil a{background-color:rgb(195,205,211);}
+			#config .ext .me_gt a{background-color:rgb(204,204,204);}
+			#config .ext .me_blue a{background-color:rgb(0,25,75);}
+			#config .ext .me_gr a{background-color:rgb(60,60,50);}
+			#config .ext .sp_ch a{background-color:rgb(199,199,191);}
+			#config .ext .sp_red a{background-color:rgb(153,0,51);}
+			#config .ext .sp_or a{background-color:rgb(251,54,28);}
+			#config .ext .sp_blue a{background-color:rgb(0,109,209);}
+			#config .ext .sp_gr a{background-color:rgb(60,147,67);}
+
+			/*########## config / ext. (휠) ##########*/
+			#config .wheel{width:100%;}
+			#config .wheel ul{padding:10px 0;}
+			#config .wheel li{margin-left:10px;}
+			#config .wheel li a{text-indent:0;}
+			#config .wheel li img{width:100%;}
+
+			#config:after{content:""; display:block; clear:both;}
+			#config ul:after{content:""; display:block; clear:both;}
+			#configArea:after{content:""; display:block; clear:both;}
+
+			/*########## config / int. (내부인테리어) ##########*/
+
+			#config .int{width:100%; height:560px}
+
+			
+			#config .int .st_bl a{background-color:rgb(0,0,0);}
+			#config .int .st_biege a{background-color:rgb(195,168,143);}
+
+			#config .int .lt_blue a{background-color:rgb(58,64,71);}
+			#config .int .lt_gray a{background-color:rgb(51,51,51);}
+			#config .int .lt_gr a{background-color:rgb(160,155,130);}
+			#config .int .lt_red a{background-color:rgb(120,47,47);}
+
+			#config .int .cl_br a{background-color:rgb(56,38,30);}
+			#config .int .cl_gr a{background-color:rgb(57,57,42);}
+
+
+		/*############################ footerWrap ############################*/
+			#footerWrap{width:100%; border-top:2px solid #888; background-color:#151515; position:fixed; left:0; bottom:0;}
+
+			/*############################ footer ############################*/
+				#footer{width:100%; font-size:14px; color:#C7C7C7;} 
+				#footer hr{width:98%; margin-left:1%; border:1px solid #444;}
+
+			/*########## footer / legalArea ##########*/	
+				#legalArea{width:1006px; height:40px; line-height:30px; margin:0 auto;}
+
+			/*########## legalArea / copy ##########*/	
+				#copy{width:30%; float:left;}
+				#copy a{color:#999;}
+
+			/*########## legalArea / policy ##########*/	
+				#policy{width:70%; float:left;}
+
+				#policy ul{width:100%;}
+				#policy li{display:inline;}
+				#policy li a{padding:0 20px; color:#777; transition:color 0.3s linear;}
+
+				#footer a:hover, #footer a:focus{color:#C5051F;}
+
+				#footerWrap:after{content:""; display:block; clear:both;}
+
+
+		/*############################# 임시보관공간 #############################*/
+			h2{position:absolute; left:-9999px; width:1px; height:1px; line-height:0; font-size:1px; overflow:hidden;}
+
+	</style>
+	<script>
+		$(document).ready(function(){
+			
+			/*#### mainImg 와 config 높이 맞추기####
+				var mW = $("#main").height();
+				$("#config").css("height",+mW+"px");
+
+			$(window).resize(function(){
+				var mW = $("#main").height();
+				$("#config").css("height",+mW+"px");
+			}); 로딩 시 안불러와지는 현생 발생*/
+
+
+			/*##### navigation 클릭하면 강조 효과 #####*/
+			$("#configNav li a").click(function(){
+				$("#configNav li a").removeClass();
+				$(this).addClass("sel");
+			});
+			// 하단의 이미지 기능 클릭 하면 위에 메뉴 강조
+
+			// #ext, .ext 클릭하면 상단의 메뉴 강조
+			/*
+				대상: #config 영역의 n번째 dt, dd
+				이벤트: click 
+				이벤트 핸들러: #configNav ul의 n번째 li가 강조
+
+				var num = $("#config dd:eq(1)");
+				num.css({"backgroundColor":"red"});
+				console.log(num);
+			*/
+
+			/*##### 제목 dt 클릭하면 아래부분 열리는 기능(열렸다 닫혔다 가능) #####*/
+			$("#config dt").click(function(){
+				$(this).find("span").toggleClass("hide");
+				$(this).next().stop().slideToggle(500,"swing");
+
+			});
+
+			/*##### navigation 클릭하면 내용 열리는 기능 #####*/
+			/*다시 닫히지는 않고 열리기만 가능하도록 만듦*/
+			$("#configNav li a").bind("click focusin",function(){
+				$($(this).attr("href")).next().stop().slideDown();
+				$($(this).attr("href")).find("span").removeClass("hide");
+			});
+			
+			/*##### exerior color 클릭 시 색상 커지게 하기 #####*/
+			$("#config .ext li, #config .int li").click(function(){
+				$("#config li").css({"transform":"scale(1)","boxShadow":"none"});
+				$(this).css({"transform":"scale(1.1)","boxShadow":"4px 4px 4px #ccc"});				
+			});
+
+			/*##### wheel 클릭 시 이미지 커지게 하기 #####*/
+			$("#config .wheel li").click(function(){
+				$("#config .wheel li").css({"transform":"scale(1)"});
+				$(this).css({"transform":"scale(1.2)"});			
+			});
+
+
+
+			/*###### 색상 클릭 시 메인 이미지 변경 ######*/
+			// 너무 복잡해서 추후에 변경이 필요함 
+			// (내부 각 항목에 줄에 따라 영역이 달라 나뉘어짐)
+			$("#config .mainInt").hide();
+
+			$("#config .stan li").click(function(){
+				$("#main .mainInt").hide();
+				var num = $(this).index();
+				$("#main .mainImg").show().attr("src","../img/config/body/stan"+num+".jpg");
+				return false;	
+			});
+			$("#config .meta li").click(function(){
+				$("#main .mainInt").hide();
+				var num = $(this).index();
+				$("#main .mainImg").show().attr("src","../img/config/body/meta"+num+".jpg");
+				return false;	
+			});
+			$("#config .spec li").click(function(){
+				$("#main .mainInt").hide();
+				var num = $(this).index();
+				$("#main .mainImg").show().attr("src","../img/config/body/spec"+num+".jpg");
+				return false;	
+			});
+
+			/*###### 휠 클릭 시 메인 이미지 변경 ######*/
+			$("#config .wheel li").click(function(){
+				$("#main .mainInt").hide();
+				var num = $(this).index();
+				$("#main .layer1").find("img").show().attr("src","../img/config/wheel/whel"+num+".png")
+			}); 
+			
+			/*###### 내부 사진 색상 클릭 시 메인 이미지 변경 (layer2)######*/
+			$("#config .intS li").click(function(){		
+				var num = $(this).index();
+				$("#main .mainInt").show().attr("src","../img/config/int/intS"+num+".jpg");
+			});
+			$("#config .intL li").click(function(){
+				var num = $(this).index();
+				$("#main .mainInt").show().attr("src","../img/config/int/intL"+num+".jpg");
+			});
+
+			$("#config .intC li").click(function(){
+				var num = $(this).index();
+				$("#main .mainInt").show().attr("src","../img/config/int/intC"+num+".jpg");
+
+			});
+
+
+			/*###### 메인 이미지 modal 팝업 ######
+			$("body").append('<div id="full"></div><div id="view"></div>');
+			$("#full, #view").hide();
+			
+			$("#main").click(function(){
+				$("#view").html('<img src=" '+$(this).find('img').attr('src')+' " alt="image"/>');
+				$("#full, #view").show();
+		
+			});
+
+      $("#full, #view").click(function(){
+        $("#full, #view").hide();
+      });*/
+
+	
+
+
+			
+		});
+	</script>
+ </head>
+ <body>
+	<div id="wrap">
+		<header id="headerWrap">
+			<div id="header">
+				<h1>
+					<a href="../index.html" title="Porsche">
+						<img src="../img/header/logo.jpg" alt="Porsche"/>
+					</a>
+				</h1>
+			</div>
+		</header>
+
+		<div id="container">
+			<!--configNav-->
+			<div id="configNav">
+				<h2>Configurator Navigation Area</h2>
+				<ul>
+					<!-- <li><a href="#model" title="Models">1. Models</a><span>|</span></li> -->
+					<li><a href="#ext" title="Exterior Colors">1. Exterior Colors</a><span>|</span></li>
+					<li><a href="#wheel" title="Wheels">2. Wheels</a><span>|</span></li>
+					<li><a href="#int" title="Interior and Seats">3. Interior &amp; Seats</a></li>
+				</ul>
+			</div>
+
+
+		
+			<!--configArea-->
+			<div id="configArea">
+				<h2>Configurator</h2>
+				<h3>911 <span>Carrera 4S</span></h3>
+				<!--config_main-->
+				<div id="config_main">
+					<div id="main">
+						<span class="layer0">
+							<img class='mainImg' src="../img/config/body/stan0.jpg" alt="main_image"/>
+						</span>
+						<span class="layer1">
+							<img src='../img/config/wheel/whel0.png' alt='wheel'/>
+						</span>
+						<span class="layer2">
+							<img class="mainInt" src="../img/config/body/stan0.jpg" alt="wheel image"/>
+						</span>
+					</div>
+				</div>
+				
+				<!--config-->
+				<div id="config">
+					<dl>
+						<dt id="ext">Exterior Colors<span>∧</span></dt>
+						<dd class="ext">
+							<h4>Standard Color</h4>
+							<ul class="stan">
+								<li class="white">
+									<span class="selected"></span>
+									<a href="../img/config/body/stan0.jpg" title="White - $0">white</a>
+								</li>
+								<li class="black">
+									<span></span>
+									<a href="../img/config/body/stan1.jpg" title="black - $0">black</a>
+								</li>
+								<li class="red">
+									<span></span>
+									<a href="../img/config/body/stan2.jpg" title="Gaurds Red - $0">Gaurds Red</a>
+								</li>
+								<li class="yellow">
+									<span></span>
+									<a href="../img/config/body/stan3.jpg" title="Racing Yellow - $0">Racing Yellow</a>
+								</li>
+							</ul>
+
+							<h4>Metallic Color</h4>
+							<ul class="meta">
+								<li class="me_wh">
+									<span></span>
+									<a href="../img/config/body/meta0.jpg" title="White - $840">Carrera Metallic White</a>
+								</li>
+								<li class="me_bl">
+									<span></span>
+									<a href="../img/config/body/meta1.jpg" title="Jet black Metallic- $840">Jet black Metallic</a>
+								</li>
+								<li class="me_grey">
+									<span></span>
+									<a href="../img/config/body/meta2.jpg" title="Agate Grey Metallic - $840">Agate Grey Metallic</a>
+								</li>
+								<li class="me_sil">
+									<span></span>
+									<a href="../img/config/body/meta3.jpg" title="Dolomite Silver Metallic - $840">Dolomite Silver Metallic</a>
+								</li>
+								<li class="me_gt">
+									<span></span>
+									<a href="../img/config/body/meta4.jpg" title="GT Silver Metallic - $840">GT Silver Metallic</a>
+								</li>
+								<li class="me_blue">
+									<span></span>
+									<a href="../img/config/body/meta5.jpg" title="Gentian Blue Metallic - $840">Gentian Blue Metallic</a>
+								</li>
+								<li class="me_gr">
+									<span></span>
+									<a href="../img/config/body/meta6.jpg" title="Aventurine Green Metallic - $840">Aventurine Green Metallic</a>
+								</li>
+							</ul>
+
+							<h4>Special Color</h4>
+							<ul class="spec">
+								<li class="sp_ch">
+									<span></span>
+									<a href="../img/config/body/spec1.jpg" title="Chalk - $3,270">Chalk</a>
+								</li>
+								<li class="sp_red">
+									<span></span>
+									<a href="../img/config/body/spec2.jpg" title="Carmine Red - $3,270">Carmine Red</a>
+								</li>
+								<li class="sp_or">
+									<span></span>
+									<a href="../img/config/body/spec3.jpg" title="Lava Orange - $3,270">Lava Orange</a>
+								</li>
+								<li class="sp_blue">
+									<span></span>
+									<a href="../img/config/body/spec4.jpg" title="Shark Blue - $3,270">Shark Blue</a>
+								</li>
+								<li class="sp_gr">
+									<span></span>
+									<a href="../img/config/body/spec5.jpg" title="Python Green - $3,270">Python Green</a>
+								</li>
+							</ul>
+						</dd>
+
+						<dt id="wheel">Wheels<span>∧</span></dt>
+						<dd class="wheel">
+							<ul>
+								<li class="wheel0">
+									<span class="selected"></span>
+									<a href="#none" title="Carrera S Wheels">
+										<img src="../img/config/wheel/wh0.jpg" alt="Carrera S Wheels"/>
+									</a>
+								</li>
+								<li class="wheel1">
+									<span></span>
+									<a href="#none" title="RS Spyder Design Wheels in Satin Black">
+										<img src="../img/config/wheel/wh1.jpg" alt="RS Spyder Design Wheels in Satin Black"/>
+									</a>
+								</li>
+								<li class="wheel2">
+									<span></span>
+									<a href="#none" title="911 Turbo S Wheels in Satin Black">
+										<img src="../img/config/wheel/wh2.jpg" alt="911 Turbo S Wheels in Satin Black"/>
+									</a>
+								</li>
+								<li class="wheel3">
+									<span></span>
+									<a href="#none" title="911 Exclusive Design Wheel">
+										<img src="../img/config/wheel/wh3.jpg" alt="911 Exclusive Design Wheel"/>
+									</a>
+								</li>
+
+
+
+							</ul>
+						</dd>
+
+						<dt id="int">Interior &amp; Seats<span>∧</span></dt>
+						<dd class="int">
+							<h4>Standard Interior</h4>
+							<ul class="intS">
+								<li class="st_bl">
+									<span class="selected"></span>
+									<a href="#none" title="Standard Interior in Black $0">Standard Black</a>
+								</li>
+								<li class="st_biege">
+									<span></span>
+									<a href="#none" title="Standard Interior in Beige - $0">Standard Beige</a>
+								</li>
+							</ul>
+
+							<h4>Leather Interior</h4>
+							<ul class="intL">
+								<li class="lt_blue">
+									<span></span>
+									<a href="#none" title="Leather Interior in Graphite Blue - $3,830">Graphite Blue</a>
+								</li>
+								<li class="lt_gray">
+									<span></span>
+									<a href="#none" title="Leather Interior in Slate Grey - $3,830">Slate Grey</a>
+								</li>
+								<li class="lt_gr">
+									<span></span>
+									<a href="#none" title="Leather Interior in Island Green - $3,830">Island Green</a>
+								</li>
+								<li class="lt_red">
+									<span></span>
+									<a href="#none" title="Leather Interior in Bordeaux Red - $3,830">Bordeaux Red</a>
+								</li>
+							</ul>	
+							
+							<h4>Club Leather Interior</h4>
+							<ul class="intC">
+								<li class="cl_br">
+									<span></span>
+									<a href="#none" title="Club Leather Interior in Truffle Brown - $5,340">Truffle Brown</a>
+								</li>
+								<li class="cl_gr">
+									<span></span>
+									<a href="#none" title="Club Leather Interior in Agave Green - $5,340">Agave Green</a>
+								</li>
+							</ul>	
+						</dd>
+					</dl>
+				</div>
+				
+			</div>
+		</div>
+
+		<!--footer-->
+		<footer id="footerWrap">
+			<div id="footer">
+				<hr class="hide"/>
+
+				<div id="legalArea">
+					<h2>copyright and policy</h2>
+					<p id="copy">
+						© 2022 <a href="../index.html" title="Porsche HOME">Porsche Cars.</a> All rights reserved
+					</p>
+					<div id="policy">
+						<ul>
+							<li><a href="#none" title="Legal notice">Legal notice</a></li>
+							<li><a href="#none" title="Legal">Legal</a></li>
+							<li><a href="#none" title="Cookie Policy">Cookie Policy</a></li>
+							<li><a href="#none" title="Cookie Consent Options">Cookie Consent Options</a></li>	
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+ </body> 
+</html>
