@@ -50,27 +50,6 @@ $(document).ready(function(){
   // 일단은 과거 버전으로 reset 함
 
 
-  /*스크롤 시 사라지게 하는 기능 만들기
-   : 해당 기능은 추후 연구하기
-  var docElem = document.documentElement;
-  
-  window.addEventListener('scroll',function(){  // 스크롤 감지
-    var nowScroll = $(document).scrollTop();	// 상단의 스크롤 좌표
-    var offs = document.body.getBoundingClientRect().bottom;	// 화면 바닥부터 보여지는 화면 상단의 스크롤 좌표
-
-    console.log(nowScroll);
-    console.log(offs);
-
-    if (nowScroll > 300){					// 스크롤
-      $("#headerWrap").animate({"top":"-300px"},200,"swing");
-      return false;
-    }else if(nowScroll < 200){
-      $("#headerWrap").css({"top":"-20px"});
-      return false;
-    }
-  });*/
-  
-
   /*############# [visual 부분 이미지 sliding] #############*/
     /*
       sliding button					
