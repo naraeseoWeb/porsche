@@ -1,38 +1,15 @@
 $(document).ready(function(){
-  
-  /*#### mainImg 와 config 높이 맞추기####
-    var mW = $("#main").height();
-    $("#config").css("height",+mW+"px");
-
-  $(window).resize(function(){
-    var mW = $("#main").height();
-    $("#config").css("height",+mW+"px");
-  }); 로딩 시 안불러와지는 현생 발생*/
-
 
   /*##### navigation 클릭하면 강조 효과 #####*/
   $("#configNav li a").click(function(){
     $("#configNav li a").removeClass();
     $(this).addClass("sel");
   });
-  // 하단의 이미지 기능 클릭 하면 위에 메뉴 강조
-
-  // #ext, .ext 클릭하면 상단의 메뉴 강조
-  /*
-    대상: #config 영역의 n번째 dt, dd
-    이벤트: click 
-    이벤트 핸들러: #configNav ul의 n번째 li가 강조
-
-    var num = $("#config dd:eq(1)");
-    num.css({"backgroundColor":"red"});
-    console.log(num);
-  */
 
   /*##### 제목 dt 클릭하면 아래부분 열리는 기능(열렸다 닫혔다 가능) #####*/
   $("#config dt").click(function(){
     $(this).find("span").toggleClass("hide");
     $(this).next().stop().slideToggle(500,"swing");
-
   });
 
   /*##### navigation 클릭하면 내용 열리는 기능 #####*/
@@ -57,7 +34,6 @@ $(document).ready(function(){
 
 
   /*###### 색상 클릭 시 메인 이미지 변경 ######*/
-  // 너무 복잡해서 추후에 변경이 필요함 
   // (내부 각 항목에 줄에 따라 영역이 달라 나뉘어짐)
   $("#config .mainInt").hide();
 

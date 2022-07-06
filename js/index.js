@@ -82,12 +82,12 @@ $(document).ready(function(){
       clearInterval(sel);
       $(this).find("img").attr("src","img/index/playBtn.png");
       play=false;
-      console.log(sel);
+      //console.log(sel);
     }else{
       sel = setInterval(function(){$(".nextBtn").click();},3000);
       $(this).find("img").attr("src","img/index/stopBtn.png");
       play=true;
-      console.log(sel);
+      //console.log(sel);
     }
   });
   
