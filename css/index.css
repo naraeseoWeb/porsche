@@ -972,6 +972,8 @@ h3{letter-spacing:1px;}
     #visual .textArea{width:300px; font-size:13px; position:absolute; left:10px; bottom:10px;}
     #visual .textArea a strong{display:block; width:100%; font-size:24px;}
 
+    #visual .btnArea .playBtn{width:25px; height:25px; bottom:-10px; right:25px;}
+
   /*####### visual / .scroll #######*/	
     #visual .scroll{width:100%; line-height:60px; text-align:center; display:none;}
 
