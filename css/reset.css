@@ -1,6 +1,6 @@
 /*reset*/
 *{margin:0; padding:0;}
-body{margin:0; padding:0; background-color:#fff;}
+body{margin:0; padding:0; background-color:#fff; font-family:sans-serif;}
 header, nav, section, footer, p, div, form, a, span, strong, em, i{margin:0; padding:0;}			
 header, nav, section, footer{display:block;}
 
